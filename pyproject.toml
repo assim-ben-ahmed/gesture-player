@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gesture-player"
+version = "1.0.0"
+description = "Control your music with hand gestures in front of a webcam (MediaPipe + Qt)"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = ["mediapipe>=0.10.14", "opencv-python>=4.8", "PySide6>=6.5", "numpy>=1.24"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[project.gui-scripts]
+gesture-player = "gesture_player.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["gesture_player*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+"gesture_player/ui.py" = ["E501"]
